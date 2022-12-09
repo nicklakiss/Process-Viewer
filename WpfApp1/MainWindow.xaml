@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Processes Viewer" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListView Grid.ColumnSpan="2" x:Name="ProcessesView" SelectionChanged="ProcessInfo_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Width="80" Header="Id"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ProcessName}" Width="180" Header="Process"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding VirtualMemorySize64}" Width="120" Header="Memory"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Handle}" Width="80" Header="Descriptor"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding StartTime}" Width="180" Header="Start Time"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="Threads" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding CurrentPriority}" Width="90" Header="Current Priority"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PriorityLevel}" Width="90" Header="Priority Level"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding StartTime}" Width="170" Header="Start Time"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding StartAddress}" Width="90" Header="Start Address"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="Modules" Grid.Row="1" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding BaseAddress}" Width="100" Header="Base Address"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding FileName}" Width="350" Header="File Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ModuleMemorySize}" Width="160" Header="Module Memory Size"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ModuleName}" Width="110" Header="Module Name"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
